@@ -1,0 +1,160 @@
+<!-- Copyright (c) Microsoft Corporation. All rights reserved. Licensed under the MIT License. -->
+<!DOCTYPE html>
+
+<html>
+     <head>
+          <meta charset="utf-8" />
+          <title>OISEE 縮寫表工具</title>
+          <!-- <link rel="icon" href="/共用雲端硬碟/6_資源/17 插件/OISEE Scripts/LOGO.svg"> -->
+          <!-- CSS only -->
+          <link
+               href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+               rel="stylesheet"
+               integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+               crossorigin="anonymous"
+          />
+          <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
+          <script
+               src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+               integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+               crossorigin="anonymous"
+          ></script>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+          <!-- Office JavaScript API -->
+          <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+          <title></title>
+     </head>
+     <style>
+          body {
+               padding: 5px;
+               /* background-color: #eeeeee; */
+          }
+          .f12 {
+               font-size: 12px;
+          }
+          .h60plus {
+               min-height: 60px;
+          }
+          .selfScroll {
+               overflow: auto;
+          }
+     </style>
+     <body>
+          <div class="toast f12" style="position: fixed; bottom: 2px; right: 2px; width: 60vw">
+               <div class="toast-body" id="notificationContents">通知內容</div>
+          </div>
+          <div class="row gx-1 w-100 mb-1">
+               <!-- <p>This add-in will insert 'Hello world!' in the current selection of the slide.</p> -->
+               <div class="col">
+                    <button
+                         type="button"
+                         class="btn btn-dark btn-sm col w-100"
+                         data-bs-toggle="tooltip"
+                         data-bs-placement="top"
+                         data-bs-html="true"
+                         title="將選取的物件納入縮寫表紀錄，後續在清查時作為比對字庫</br> [Alt] 將選取物件自紀錄移除</br>[Ctrl+Shift] 將所有底緣接近當前選取物件的物件納入縮寫表</br>[Ctrl+Alt+Shift] 清空縮寫表紀錄"
+                         onclick="registAbbreObj()"
+                    >
+                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-database-check" viewBox="0 0 16 16">
+                              <path
+                                   d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm1.679-4.493-1.335 2.226a.75.75 0 0 1-1.174.144l-.774-.773a.5.5 0 0 1 .708-.708l.547.548 1.17-1.951a.5.5 0 1 1 .858.514Z"
+                              />
+                              <path
+                                   d="M12.096 6.223A4.92 4.92 0 0 0 13 5.698V7c0 .289-.213.654-.753 1.007a4.493 4.493 0 0 1 1.753.25V4c0-1.007-.875-1.755-1.904-2.223C11.022 1.289 9.573 1 8 1s-3.022.289-4.096.777C2.875 2.245 2 2.993 2 4v9c0 1.007.875 1.755 1.904 2.223C4.978 15.71 6.427 16 8 16c.536 0 1.058-.034 1.555-.097a4.525 4.525 0 0 1-.813-.927C8.5 14.992 8.252 15 8 15c-1.464 0-2.766-.27-3.682-.687C3.356 13.875 3 13.373 3 13v-1.302c.271.202.58.378.904.525C4.978 12.71 6.427 13 8 13h.027a4.552 4.552 0 0 1 0-1H8c-1.464 0-2.766-.27-3.682-.687C3.356 10.875 3 10.373 3 10V8.698c.271.202.58.378.904.525C4.978 9.71 6.427 10 8 10c.262 0 .52-.008.774-.024a4.525 4.525 0 0 1 1.102-1.132C9.298 8.944 8.666 9 8 9c-1.464 0-2.766-.27-3.682-.687C3.356 7.875 3 7.373 3 7V5.698c.271.202.58.378.904.525C4.978 6.711 6.427 7 8 7s3.022-.289 4.096-.777ZM3 4c0-.374.356-.875 1.318-1.313C5.234 2.271 6.536 2 8 2s2.766.27 3.682.687C12.644 3.125 13 3.627 13 4c0 .374-.356.875-1.318 1.313C10.766 5.729 9.464 6 8 6s-2.766-.27-3.682-.687C3.356 4.875 3 4.373 3 4Z"
+                              />
+                         </svg>
+                         紀錄縮寫表物件
+                    </button>
+               </div>
+               <div class="col">
+                    <button
+                         type="button"
+                         class="btn btn-dark btn-sm col w-100"
+                         data-bs-toggle="tooltip"
+                         data-bs-placement="top"
+                         data-bs-html="true"
+                         title="將選取的物件納入排除紀錄，後續在清查縮寫時將過他們</br> [Alt] 將選取物件自紀錄移除</br>[Ctrl+Alt+Shift] 清空排除物件紀錄"
+                         onclick="registExcludeObj()"
+                    >
+                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                              <path
+                                   d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+                              />
+                         </svg>
+                         紀錄排除物件
+                    </button>
+               </div>
+               <div class="col">
+                    <button type="button" class="btn btn-dark btn-sm col w-100" onclick="registTableObj()">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-table" viewBox="0 0 16 16">
+                              <path
+                                   d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z"
+                              />
+                         </svg>
+                         紀錄表格物件
+                    </button>
+               </div>
+               <!-- <div class="col">
+                    <button type="button" class="btn btn-secondary btn-sm mb-1 w-100" onclick="unregistAbbreObj()">取消記錄物件</button>
+               </div> -->
+          </div>
+          <div class="row gx-1 w-100 mb-1">
+               <div class="col">
+                    <button type="button" class="btn btn-primary btn-sm mb-1 w-100" onclick="listAbbreofActivePage()">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-medical" viewBox="0 0 16 16">
+                              <path
+                                   d="M8.5 4.5a.5.5 0 0 0-1 0v.634l-.549-.317a.5.5 0 1 0-.5.866L7 6l-.549.317a.5.5 0 1 0 .5.866l.549-.317V7.5a.5.5 0 1 0 1 0v-.634l.549.317a.5.5 0 1 0 .5-.866L9 6l.549-.317a.5.5 0 1 0-.5-.866l-.549.317V4.5zM5.5 9a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 2a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"
+                              />
+                              <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z" />
+                         </svg>
+                         生成本頁縮寫表
+                    </button>
+               </div>
+               <div class="col">
+                    <button type="button" class="btn btn-primary btn-sm mb-1 w-100" onclick="listAbbreofAllPages()">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-files" viewBox="0 0 16 16">
+                              <path
+                                   d="M13 0H6a2 2 0 0 0-2 2 2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2 2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm0 13V4a2 2 0 0 0-2-2H5a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1zM3 4a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4z"
+                              />
+                         </svg>
+                         生成整份縮寫表
+                    </button>
+               </div>
+          </div>
+          <!-- <div class="row gx-1 w-100">
+               <div class="col">
+                    <button type="button" class="btn btn-secondary btn-sm mb-1 w-100" onclick="sayHello()">test</button>
+               </div>
+          </div> -->
+          <div class="form-control f12 h60plus selfScroll" contenteditable="true" id="outcome">(縮寫表輸出區)</div>
+          <div class="w-100"></div>
+          <div id="" class="nav justify-content-end mt-2 gx-2 container">
+               <div id="databaseStatus" onclick="init()"></div>
+               <div style="width: 3px"></div>
+               <a href="https://docs.google.com/spreadsheets/d/11TKRpS153No3YQGL-JM0118ZtzFBYtm8Zk7kylTgc7s/edit?pli=1#gid=0" target="_blank"
+                    ><button class="btn btn-sm btn-success" title="開啟縮寫表資料庫 (Google Sheet)">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-spreadsheet" viewBox="0 0 16 16">
+                              <path
+                                   d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V9H3V2a1 1 0 0 1 1-1h5.5v2zM3 12v-2h2v2H3zm0 1h2v2H4a1 1 0 0 1-1-1v-1zm3 2v-2h3v2H6zm4 0v-2h3v1a1 1 0 0 1-1 1h-2zm3-3h-3v-2h3v2zm-7 0v-2h3v2H6z"
+                              />
+                         </svg>
+                    </button>
+               </a>
+          </div>
+          <!-- <p id="outcome">ACA</p> -->
+     </body>
+
+     <!-- <script src="js/office.js" type="text/javascript"></script> -->
+     <script src="js/main.js"></script>
+     <!-- <script>
+          jQuery.ajax({
+               crossDomain: true,
+               url: "https://script.google.com/macros/s/AKfycbyiMJ1rB7zDzBsYCptNIemVzR6PCjcgif9hgRC_TDnBnpFiIt4g8SIvtFgjCmq3uVs-/exec",
+               method: "GET",
+               dataType: "jsonp",
+          });
+     </script> -->
+</html>
