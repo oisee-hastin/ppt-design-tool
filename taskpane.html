@@ -12,23 +12,4 @@
 
      <!-- <script src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js" type="text/javascript"></script> -->
      <script src="js/main.js"></script>
-     <script>
-          Office.onReady((info) => {
-               // Check that we loaded into PowerPoint
-               if (info.host === Office.HostType.PowerPoint) {
-                    document.getElementById("helloButton").onclick = sayHello;
-               }
-          });
-
-          async function sayHello() {
-               // Set coercion type to text since
-               const options = { coercionType: Office.CoercionType.Text };
-
-               // clear current selection
-               await Office.context.document.setSelectedDataAsync(" ", options);
-
-               // Set text in selection to 'Hello world!'
-               await Office.context.document.setSelectedDataAsync("Hello world!", options);
-          }
-     </script>
 </html>
