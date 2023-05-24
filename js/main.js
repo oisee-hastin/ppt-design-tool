@@ -45,3 +45,35 @@ async function addSpace() {
           }
      });
 }
+
+async function copyPureTextContent() {
+     Office.context.document.getSelectedDataAsync(Office.CoercionType.Text, async function (result) {
+          if (result.status === Office.AsyncResultStatus.Succeeded) {
+               let str = result.value;
+               await createTxtElement(document, str);
+               console.log(str);
+
+               function createTxtElement(document, str) {
+                    // Create new element
+                    var el = document.createElement("textarea");
+                    // Set value (string to be copied)
+                    el.value = str;
+                    // Set non-editable to avoid focus and move outside of view
+                    el.setAttribute("readonly", "");
+                    el.style = { position: "absolute", left: "-9999px" };
+                    document.body.appendChild(el);
+                    // Select text inside element
+                    el.select();
+                    // Copy text to clipboard
+                    document.execCommand("copy");
+                    // Remove temporary element
+                    document.body.removeChild(el);
+                    return new Promise((r) => setTimeout(r, 10));
+               }
+          } else {
+               const error = result.error;
+               // 在此處處理錯誤
+               console.error(error);
+          }
+     });
+}
