@@ -100,11 +100,44 @@
                          自動中文與英數間空白
                     </button>
                </div>
+               <div class="m-1"></div>
                <div class="d-grid gap-2 bg-transparent p-1">
-                    <button type="button" class="col btn btn-primary btn-sm" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" title="" onclick="copyPureTextContent()()">
+                    <button type="button" class="col btn btn-primary btn-sm" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" title="" onclick="copyPureTextContent()">
                          複製文字內容
                     </button>
                </div>
+               <div class="m-1"></div>
+               <div class="d-grid gap-2 bg-transparent p-1">
+                    <!-- <button type="button" class="col btn btn-dark btn-sm" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" title="" onclick="compareFileDifference()">
+                         PPT 檔案比對
+                    </button> -->
+                    <div class="row m-0 gap-1">
+                         <button
+                              type="button"
+                              class="col btn btn-dark btn-sm"
+                              data-bs-toggle="tooltip"
+                              data-bs-placement="bottom"
+                              data-bs-html="true"
+                              title=""
+                              onclick="compareFileDifference_source()"
+                         >
+                              記錄舊檔資訊
+                         </button>
+                         <button
+                              type="button"
+                              class="col btn btn-dark btn-sm"
+                              data-bs-toggle="tooltip"
+                              data-bs-placement="bottom"
+                              data-bs-html="true"
+                              title=""
+                              onclick="compareFileDifference_target()"
+                         >
+                              比對變更內容
+                         </button>
+                         <div id="tmp"></div>
+                    </div>
+               </div>
+
                <!-- <div class="m-1"></div>
                <button
                     class="btn btn-dark col sectionHolder"
