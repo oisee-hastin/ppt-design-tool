@@ -219,13 +219,13 @@ async function compareFileDifference_target() {
                     if (findMatchContentIdx != -1 && el.t != "") {
                          try {
                               if (el.t == sourceDataLog[findMatchContentIdx].t) {
-                                   curPageShapes.items[k].textFrame.textRange.font.color = "#CCCCCC";
+                                   curPageShapes.items[k].textFrame.textRange.font.color = "#EEEEEE";
                                    curPageShapes.items[k].fill.setSolidColor("#FFFFFF");
-                                   curPageShapes.items[k].fill.transparency = 0.5;
+                                   curPageShapes.items[k].fill.transparency = 0.1;
                               } else {
-                                   curPageShapes.items[k].textFrame.textRange.font.color = "#E9E0D6";
-                                   curPageShapes.items[k].fill.setSolidColor("#FFFFE6");
-                                   curPageShapes.items[k].fill.transparency = 0.5;
+                                   curPageShapes.items[k].textFrame.textRange.font.color = "#EEE1E0";
+                                   curPageShapes.items[k].fill.setSolidColor("#FFFFEE");
+                                   curPageShapes.items[k].fill.transparency = 0.1;
                               }
                          } catch (err) {}
                     }
