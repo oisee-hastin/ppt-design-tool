@@ -139,6 +139,12 @@ async function compareFileDifference_source() {
                     let el = new Object();
                     el.p = curSlideID;
                     el.s = curPageShapes.items[k].id;
+                    if (curPageShapes.items[k].type == "Group") {
+                         let subgroup = curPageShapes.items[k].shapes;
+                         console.log(curPageShapes.items[k].shapes);
+                         subgroup.load("items");
+                         await context.sync();
+                    }
                     try {
                          curPageShapes.items[k].textFrame.textRange.load("text");
                          await context.sync();
@@ -245,96 +251,6 @@ async function compareFileDifference_target() {
           console.log(outcome);
           // console.log(JSON.stringify(logAry));
           // createTxtElement(document, JSON.stringify(logAry));
-          function readPasteBoard() {
-               if (navigator.clipboard) {
-                    // Read the clipboard data
-                    navigator.clipboard
-                         .readText()
-                         .then(function (clipboardData) {
-                              console.log("Clipboard data:", clipboardData);
-                              sourceDataLog = JSON.parse(clipboardData);
-                         })
-                         .catch(function (error) {
-                              sourceDataLog = false;
-                              console.log("Error reading clipboard data:", error);
-                         });
-               } else {
-                    sourceDataLog = false;
-                    console.log("Clipboard API is not supported in this browser.");
-               }
-               return new Promise((r) => setTimeout(r, 10));
-               // return sourceDataLog;
-          }
-     });
-}
-
-async function compareFileDifference_target2() {
-     await PowerPoint.run(async (context) => {
-          // let sourceDataLog = false;
-          // if (navigator.clipboard) {
-          //      // Read the clipboard data
-          //      navigator.clipboard
-          //           .readText()
-          //           .then(function (clipboardData) {
-          //                console.log("Clipboard data:", clipboardData);
-          //                sourceDataLog = JSON.parse(clipboardData);
-          //           })
-          //           .catch(function (error) {
-          //                sourceDataLog = false;
-          //                console.log("Error reading clipboard data:", error);
-          //           });
-          // } else {
-          //      sourceDataLog = false;
-          //      console.log("Clipboard API is not supported in this browser.");
-          // }
-
-          // await readPasteBoard();
-          sourceDataLog = [{}];
-
-          if (sourceDataLog != false) {
-               console.log(sourceDataLog);
-               let slides = context.presentation.slides;
-               slides.load("items");
-               await context.sync();
-               let sortedSlides = slides.items.sort((a, b) => {
-                    return a.id - b.id;
-               });
-               console.log(sortedSlides);
-
-               for (let i = 0; i < slides.items.length; i++) {
-                    curPageShapes = slides.items[i].shapes;
-                    curSlideID = slides.items[i].id;
-                    curPageShapes.load("items");
-                    await context.sync();
-                    for (let k = 0; k < curPageShapes.items.length; k++) {
-                         let el = new Object();
-                         el.p = curSlideID;
-                         el.s = curPageShapes.items[k].id;
-                         try {
-                              curPageShapes.items[k].textFrame.textRange.load("text");
-                              await context.sync();
-                              el.t = curPageShapes.items[k].textFrame.textRange.text;
-                         } catch (err) {
-                              console.log("Err" + el.s);
-                              // console.log(err);
-                              el.t = "";
-                         }
-                         console.log(el);
-                         let findMatchContentIdx = sourceDataLog.findIndex((obj) => {
-                              // console.log(obj);
-                              return obj.p == el.p && obj.s == el.s && obj.t == el.t;
-                         });
-                         console.log(findMatchContentIdx);
-                         if (findMatchContentIdx != -1) {
-                              curPageShapes.items[k];
-                              curPageShapes.items[k].textFrame.textRange.font.color = "#CCCCCC";
-                              curPageShapes.items[k].fill.setSolidColor("#FFFFFF");
-                              curPageShapes.items[k].fill.transparency = 0.5;
-                         }
-                    }
-               }
-               // console.log(JSON.stringify(logAry));
-          }
           function readPasteBoard() {
                if (navigator.clipboard) {
                     // Read the clipboard data
