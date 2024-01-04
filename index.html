@@ -13,6 +13,7 @@
                integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
                crossorigin="anonymous"
           />
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
           <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
           <script
                src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
@@ -137,7 +138,218 @@
                          <div id="tmp"></div>
                     </div>
                </div>
-
+               <div class="d-flex m-0 gap-1">
+                    <button
+                         type="button"
+                         class="flex-shrink-0 btn btn-sm btn-secondary"
+                         data-bs-toggle="tooltip"
+                         data-bs-placement="bottom"
+                         data-bs-html="true"
+                         title="吸取字體樣式"
+                         data-scriptBtn="ture"
+                         onclick="readItemStyle(1)"
+                    >
+                         <i class="bi bi-eyedropper"></i>
+                    </button>
+                    <button
+                         type="button"
+                         class="flex-grow-1 btn btn-sm btn-secondary"
+                         data-bs-toggle="tooltip"
+                         data-bs-placement="bottom"
+                         data-bs-html="true"
+                         title="套用字體樣式"
+                         data-scriptBtn="ture"
+                         data-textStyleIndex="1"
+                         onclick="applyItemStyle(1)"
+                    >
+                         字體樣式暫存格 - 1
+                    </button>
+                    <div class="flex-shrink-0 p-0 h-100">
+                         <div class="input-group m-0 h-100">
+                              <input type="checkbox" class="form-check-input btn-check mb-0" name="fontDropper1" id="fontDropper1-posX" autocomplete="off" checked="true" />
+                              <label
+                                   class="btn btn-sm btn-outline-secondary col mb-0 rounded-start"
+                                   for="fontDropper1-posX"
+                                   data-bs-toggle="tooltip"
+                                   data-bs-placement="bottom"
+                                   data-bs-html="true"
+                                   title="水平位置"
+                                   >x</label
+                              >
+                              <input type="checkbox" class="form-check-input btn-check mb-0" name="fontDropper1" id="fontDropper1-posY" autocomplete="off" checked="true" />
+                              <label class="btn btn-sm btn-outline-secondary col mb-0" for="fontDropper1-posY" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" title="垂直位置"
+                                   >y</label
+                              >
+                              <input type="checkbox" class="form-check-input btn-check mb-0" name="fontDropper1" id="fontDropper1-width" autocomplete="off" />
+                              <label class="btn btn-sm btn-outline-secondary col mb-0" for="fontDropper1-width" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" title="寬度"
+                                   >寬</label
+                              >
+                              <input type="checkbox" class="form-check-input btn-check mb-0" name="fontDropper1" id="fontDropper1-height" autocomplete="off" />
+                              <label class="btn btn-sm btn-outline-secondary col mb-0" for="fontDropper1-height" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" title="高度"
+                                   >高</label
+                              >
+                         </div>
+                    </div>
+               </div>
+               <div class="d-flex m-0 gap-1">
+                    <button
+                         type="button"
+                         class="flex-shrink-0 btn btn-sm btn-secondary"
+                         data-bs-toggle="tooltip"
+                         data-bs-placement="bottom"
+                         data-bs-html="true"
+                         title="吸取字體樣式"
+                         data-scriptBtn="ture"
+                         onclick="readItemStyle(2)"
+                    >
+                         <i class="bi bi-eyedropper"></i>
+                    </button>
+                    <button
+                         type="button"
+                         class="flex-grow-1 btn btn-sm btn-secondary"
+                         data-bs-toggle="tooltip"
+                         data-bs-placement="bottom"
+                         data-bs-html="true"
+                         title="套用字體樣式"
+                         data-scriptBtn="ture"
+                         data-textStyleIndex="2"
+                         onclick="applyItemStyle(2)"
+                    >
+                         字體樣式暫存格 - 2
+                    </button>
+                    <div class="flex-shrink-0 p-0 h-100">
+                         <div class="input-group m-0 h-100">
+                              <input type="checkbox" class="form-check-input btn-check mb-0" name="fontDropper2" id="fontDropper2-posX" autocomplete="off" checked="true" />
+                              <label
+                                   class="btn btn-sm btn-outline-secondary col mb-0 rounded-start"
+                                   for="fontDropper2-posX"
+                                   data-bs-toggle="tooltip"
+                                   data-bs-placement="bottom"
+                                   data-bs-html="true"
+                                   title="水平位置"
+                                   >x</label
+                              >
+                              <input type="checkbox" class="form-check-input btn-check mb-0" name="fontDropper2" id="fontDropper2-posY" autocomplete="off" checked="true" />
+                              <label class="btn btn-sm btn-outline-secondary col mb-0" for="fontDropper2-posY" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" title="垂直位置"
+                                   >y</label
+                              >
+                              <input type="checkbox" class="form-check-input btn-check mb-0" name="fontDropper2" id="fontDropper2-width" autocomplete="off" />
+                              <label class="btn btn-sm btn-outline-secondary col mb-0" for="fontDropper2-width" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" title="寬度"
+                                   >寬</label
+                              >
+                              <input type="checkbox" class="form-check-input btn-check mb-0" name="fontDropper2" id="fontDropper2-height" autocomplete="off" />
+                              <label class="btn btn-sm btn-outline-secondary col mb-0" for="fontDropper2-height" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" title="高度"
+                                   >高</label
+                              >
+                         </div>
+                    </div>
+               </div>
+               <div class="d-flex m-0 gap-1">
+                    <button
+                         type="button"
+                         class="flex-shrink-0 btn btn-sm btn-secondary"
+                         data-bs-toggle="tooltip"
+                         data-bs-placement="bottom"
+                         data-bs-html="true"
+                         title="吸取字體樣式"
+                         data-scriptBtn="ture"
+                         onclick="readItemStyle(3)"
+                    >
+                         <i class="bi bi-eyedropper"></i>
+                    </button>
+                    <button
+                         type="button"
+                         class="flex-grow-1 btn btn-sm btn-secondary"
+                         data-bs-toggle="tooltip"
+                         data-bs-placement="bottom"
+                         data-bs-html="true"
+                         title="套用字體樣式"
+                         data-scriptBtn="ture"
+                         data-textStyleIndex="3"
+                         onclick="applyItemStyle(3)"
+                    >
+                         字體樣式暫存格 - 3
+                    </button>
+                    <div class="flex-shrink-0 p-0 h-100">
+                         <div class="input-group m-0 h-100">
+                              <input type="checkbox" class="form-check-input btn-check mb-0" name="fontDropper3" id="fontDropper3-posX" autocomplete="off" checked="true" />
+                              <label
+                                   class="btn btn-sm btn-outline-secondary col mb-0 rounded-start"
+                                   for="fontDropper3-posX"
+                                   data-bs-toggle="tooltip"
+                                   data-bs-placement="bottom"
+                                   data-bs-html="true"
+                                   title="水平位置"
+                                   >x</label
+                              >
+                              <input type="checkbox" class="form-check-input btn-check mb-0" name="fontDropper3" id="fontDropper3-posY" autocomplete="off" checked="true" />
+                              <label class="btn btn-sm btn-outline-secondary col mb-0" for="fontDropper3-posY" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" title="垂直位置"
+                                   >y</label
+                              >
+                              <input type="checkbox" class="form-check-input btn-check mb-0" name="fontDropper3" id="fontDropper3-width" autocomplete="off" />
+                              <label class="btn btn-sm btn-outline-secondary col mb-0" for="fontDropper3-width" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" title="寬度"
+                                   >寬</label
+                              >
+                              <input type="checkbox" class="form-check-input btn-check mb-0" name="fontDropper3" id="fontDropper3-height" autocomplete="off" />
+                              <label class="btn btn-sm btn-outline-secondary col mb-0" for="fontDropper3-height" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" title="高度"
+                                   >高</label
+                              >
+                         </div>
+                    </div>
+               </div>
+               <div class="d-flex m-0 gap-1">
+                    <button
+                         type="button"
+                         class="flex-shrink-0 btn btn-sm btn-secondary"
+                         data-bs-toggle="tooltip"
+                         data-bs-placement="bottom"
+                         data-bs-html="true"
+                         title="吸取字體樣式"
+                         data-scriptBtn="ture"
+                         onclick="readItemStyle(4)"
+                    >
+                         <i class="bi bi-eyedropper"></i>
+                    </button>
+                    <button
+                         type="button"
+                         class="flex-grow-1 btn btn-sm btn-secondary"
+                         data-bs-toggle="tooltip"
+                         data-bs-placement="bottom"
+                         data-bs-html="true"
+                         title="套用字體樣式"
+                         data-scriptBtn="ture"
+                         data-textStyleIndex="4"
+                         onclick="applyItemStyle(4)"
+                    >
+                         字體樣式暫存格 - 4
+                    </button>
+                    <div class="flex-shrink-0 p-0 h-100">
+                         <div class="input-group m-0 h-100">
+                              <input type="checkbox" class="form-check-input btn-check mb-0" name="fontDropper4" id="fontDropper4-posX" autocomplete="off" checked="true" />
+                              <label
+                                   class="btn btn-sm btn-outline-secondary col mb-0 rounded-start"
+                                   for="fontDropper4-posX"
+                                   data-bs-toggle="tooltip"
+                                   data-bs-placement="bottom"
+                                   data-bs-html="true"
+                                   title="水平位置"
+                                   >x</label
+                              >
+                              <input type="checkbox" class="form-check-input btn-check mb-0" name="fontDropper4" id="fontDropper4-posY" autocomplete="off" checked="true" />
+                              <label class="btn btn-sm btn-outline-secondary col mb-0" for="fontDropper4-posY" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" title="垂直位置"
+                                   >y</label
+                              >
+                              <input type="checkbox" class="form-check-input btn-check mb-0" name="fontDropper4" id="fontDropper4-width" autocomplete="off" />
+                              <label class="btn btn-sm btn-outline-secondary col mb-0" for="fontDropper4-width" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" title="寬度"
+                                   >寬</label
+                              >
+                              <input type="checkbox" class="form-check-input btn-check mb-0" name="fontDropper4" id="fontDropper4-height" autocomplete="off" />
+                              <label class="btn btn-sm btn-outline-secondary col mb-0" for="fontDropper4-height" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" title="高度"
+                                   >高</label
+                              >
+                         </div>
+                    </div>
+               </div>
                <!-- <div class="m-1"></div>
                <button
                     class="btn btn-dark col sectionHolder"

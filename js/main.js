@@ -273,3 +273,68 @@ async function compareFileDifference_target() {
           }
      });
 }
+
+let textStyles = [];
+
+async function readItemStyle(presetIndex) {
+     await PowerPoint.run(async (context) => {
+          let selectedShapes = context.presentation.getSelectedShapes();
+          let shapeCount = selectedShapes.getCount();
+          selectedShapes.load("items");
+          await context.sync();
+          textStyles[presetIndex] = {
+               xPos: selectedShapes.items[0].left,
+               yPos: selectedShapes.items[0].top,
+               width: selectedShapes.items[0].width,
+               height: selectedShapes.items[0].height,
+          };
+          console.log(textStyles[presetIndex]);
+          // Get the position information
+          // Now you can use 'left' and 'top' to determine the position of the shape.
+     });
+     $("button[data-textStyleIndex=" + presetIndex + "]").text(
+          "x: " +
+               Math.floor(textStyles[presetIndex].xPos) +
+               "; y: " +
+               Math.floor(textStyles[presetIndex].yPos) +
+               "; 寬: " +
+               Math.floor(textStyles[presetIndex].width) +
+               "; 高: " +
+               Math.floor(textStyles[presetIndex].height)
+     );
+}
+
+async function applyItemStyle(presetIndex) {
+     let selectorEle = document.querySelectorAll('input[name="fontDropper' + presetIndex + '"]');
+     let selectorCondition = [];
+     selectorEle.forEach((e) => {
+          selectorCondition.push(e.checked);
+     });
+
+     await PowerPoint.run(async (context) => {
+          let selectedShapes = context.presentation.getSelectedShapes();
+          let shapeCount = selectedShapes.getCount();
+          selectedShapes.load("items");
+          await context.sync();
+          selectedShapes.items.map((shape) => {
+               shape.load("left,top,width,height");
+          });
+          await context.sync();
+          selectedShapes.items.map((shape) => {
+               if (selectorCondition[0]) {
+                    shape.left = textStyles[presetIndex].xPos;
+               }
+               if (selectorCondition[1]) {
+                    shape.top = textStyles[presetIndex].yPos;
+               }
+               if (selectorCondition[2]) {
+                    shape.width = textStyles[presetIndex].width;
+               }
+               if (selectorCondition[3]) {
+                    shape.height = textStyles[presetIndex].height;
+               }
+          });
+          // Get the position information
+          // Now you can use 'left' and 'top' to determine the position of the shape.
+     });
+}
