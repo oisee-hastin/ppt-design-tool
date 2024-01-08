@@ -139,12 +139,12 @@ async function compareFileDifference_source() {
                     let el = new Object();
                     el.p = curSlideID;
                     el.s = curPageShapes.items[k].id;
-                    if (curPageShapes.items[k].type == "Group") {
-                         let subgroup = curPageShapes.items[k].shapes;
-                         console.log(curPageShapes.items[k].shapes);
-                         subgroup.load("items");
-                         await context.sync();
-                    }
+                    // if (curPageShapes.items[k].type == "Group") {
+                    //      let subgroup = curPageShapes.items[k].shapes;
+                    //      console.log(curPageShapes.items[k].shapes);
+                    //      subgroup.load("items");
+                    //      await context.sync();
+                    // }
                     try {
                          curPageShapes.items[k].textFrame.textRange.load("text");
                          await context.sync();
