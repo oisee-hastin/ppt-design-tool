@@ -138,67 +138,666 @@
                          <div id="tmp"></div>
                     </div>
                </div>
+               <div class="m-2"></div>
                <div class="d-flex m-0 gap-1">
                     <button
                          type="button"
-                         class="flex-shrink-0 btn btn-sm btn-secondary"
+                         class="btn btn-sm btn-secondary"
                          data-bs-toggle="tooltip"
                          data-bs-placement="bottom"
                          data-bs-html="true"
-                         title="吸取字體樣式"
+                         title="吸取大小及位置"
                          data-scriptBtn="ture"
                          onclick="readItemStyle(1)"
                     >
                          <i class="bi bi-eyedropper"></i>
                     </button>
-                    <button
-                         type="button"
-                         class="flex-grow-1 btn btn-sm btn-secondary"
-                         data-bs-toggle="tooltip"
-                         data-bs-placement="bottom"
-                         data-bs-html="true"
-                         title="套用字體樣式"
-                         data-scriptBtn="ture"
-                         data-textStyleIndex="1"
-                         onclick="applyItemStyle(1)"
-                    >
-                         字體樣式暫存格 - 1
-                    </button>
-                    <div class="flex-shrink-0 p-0 h-100">
-                         <div class="input-group m-0 h-100">
-                              <input type="checkbox" class="form-check-input btn-check mb-0" name="fontDropper1" id="fontDropper1-posX" autocomplete="off" checked="true" />
-                              <label
-                                   class="btn btn-sm btn-outline-secondary col mb-0 rounded-start"
-                                   for="fontDropper1-posX"
+                    <div class="d-flex flex-fill m-0 gap-1">
+                         <div class="d-flex flex-fill">
+                              <button
+                                   type="button"
+                                   class="flex-fill btn btn-sm btn-secondary me-2 flex-wrap"
                                    data-bs-toggle="tooltip"
                                    data-bs-placement="bottom"
                                    data-bs-html="true"
-                                   title="水平位置"
-                                   >x</label
+                                   title="套用大小及位置"
+                                   data-scriptBtn="ture"
+                                   data-textStyleIndex="1"
+                                   onclick="applyItemStyle(1,[-1,-1],false)"
                               >
-                              <input type="checkbox" class="form-check-input btn-check mb-0" name="fontDropper1" id="fontDropper1-posY" autocomplete="off" checked="true" />
-                              <label class="btn btn-sm btn-outline-secondary col mb-0" for="fontDropper1-posY" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" title="垂直位置"
-                                   >y</label
-                              >
-                              <input type="checkbox" class="form-check-input btn-check mb-0" name="fontDropper1" id="fontDropper1-width" autocomplete="off" />
-                              <label class="btn btn-sm btn-outline-secondary col mb-0" for="fontDropper1-width" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" title="寬度"
-                                   >寬</label
-                              >
-                              <input type="checkbox" class="form-check-input btn-check mb-0" name="fontDropper1" id="fontDropper1-height" autocomplete="off" />
-                              <label class="btn btn-sm btn-outline-secondary col mb-0" for="fontDropper1-height" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" title="高度"
-                                   >高</label
-                              >
+                                   大小位置暫存格 - 1
+                              </button>
+
+                              <div class="d-flex flex-wrap">
+                                   <div class="flex-shrink-0 p-0 me-1">
+                                        <div class="p-0 mb-1 flex-fill">
+                                             <button
+                                                  class="btn btn-sm btn-secondary flex-shrink-0"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="對齊左、上"
+                                                  onclick="applyItemStyle(1,[-1,-1],true)"
+                                             >
+                                                  <i class="bi bi-arrow-up-left"></i>
+                                             </button>
+                                             <button
+                                                  class="btn btn-sm btn-secondary flex-shrink-0"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="僅對齊上緣"
+                                                  onclick="applyItemStyle(1,[0,-1],true)"
+                                             >
+                                                  <i class="bi bi-arrow-up"></i>
+                                                  <!-- <i class="bi bi-align-top"></i> -->
+                                             </button>
+                                             <button
+                                                  class="btn btn-sm btn-secondary flex-shrink-0"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="對齊右、上"
+                                                  onclick="applyItemStyle(1,[1,-1],true)"
+                                             >
+                                                  <i class="bi bi-arrow-up-right"></i>
+                                             </button>
+                                        </div>
+                                        <div class="p-0 mb-1 flex-shrink-0">
+                                             <button
+                                                  class="btn btn-sm btn-secondary flex-shrink-0"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="僅對齊左緣"
+                                                  onclick="applyItemStyle(1,[-1,0],true)"
+                                             >
+                                                  <i class="bi bi-arrow-left"></i>
+                                                  <!-- <i class="bi bi-align-start"></i> -->
+                                             </button>
+                                             <button
+                                                  class="btn btn-sm btn-secondary flex-shrink-0"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="不調整位置，僅套用寬高選項"
+                                                  onclick="applyItemStyle(1,[0,0],true)"
+                                                  )
+                                             >
+                                                  <i class="bi bi-crosshair"></i>
+                                             </button>
+                                             <button
+                                                  class="btn btn-sm btn-secondary flex-shrink-0"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="僅對齊右緣"
+                                                  onclick="applyItemStyle(1,[1,0],true)"
+                                                  )
+                                             >
+                                                  <i class="bi bi-arrow-right"></i>
+                                                  <!-- <i class="bi bi-align-end"></i> -->
+                                             </button>
+                                        </div>
+                                        <div class="p-0 mb-1 flex-shrink-0">
+                                             <button
+                                                  class="btn btn-sm btn-secondary flex-shrink-0"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="對齊左、下"
+                                                  onclick="applyItemStyle(1,[-1,1],true)"
+                                             >
+                                                  <i class="bi bi-arrow-down-left"></i>
+                                             </button>
+                                             <button
+                                                  class="btn btn-sm btn-secondary flex-shrink-0"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="僅對齊下緣"
+                                                  onclick="applyItemStyle(1,[0,1],true)"
+                                                  )
+                                             >
+                                                  <i class="bi bi-arrow-down"></i>
+                                                  <!-- <i class="bi bi-align-bottom"></i> -->
+                                             </button>
+                                             <button
+                                                  class="btn btn-sm btn-secondary flex-shrink-0"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="對齊右、下"
+                                                  onclick="applyItemStyle(1,[1,1],true)"
+                                                  )
+                                             >
+                                                  <i class="bi bi-arrow-down-right"></i>
+                                             </button>
+                                        </div>
+                                        <div class="p-0 d-flex gap-1 flex-shrink-0">
+                                             <input type="checkbox" class="form-check-input btn-check" name="fontDropper1" id="fontDropper1-width" autocomplete="off" />
+                                             <label
+                                                  class="btn btn-sm btn-outline-dark flex-fill"
+                                                  for="fontDropper1-width"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="調整位置時同步調整寬度"
+                                                  >寬
+                                             </label>
+                                             <input type="checkbox" class="form-check-input btn-check" name="fontDropper1" id="fontDropper1-height" autocomplete="off" />
+                                             <label
+                                                  class="btn btn-sm btn-outline-dark flex-fill"
+                                                  for="fontDropper1-height"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="調整位置時同步調整高度"
+                                                  >高
+                                             </label>
+                                        </div>
+                                   </div>
+                              </div>
                          </div>
                     </div>
                </div>
+               <div class="m-1"></div>
                <div class="d-flex m-0 gap-1">
+                    <button
+                         type="button"
+                         class="btn btn-sm btn-secondary"
+                         data-bs-toggle="tooltip"
+                         data-bs-placement="bottom"
+                         data-bs-html="true"
+                         title="吸取大小及位置"
+                         data-scriptBtn="ture"
+                         onclick="readItemStyle(2)"
+                    >
+                         <i class="bi bi-eyedropper"></i>
+                    </button>
+                    <div class="d-flex flex-fill m-0 gap-1">
+                         <div class="d-flex flex-fill">
+                              <button
+                                   type="button"
+                                   class="flex-fill btn btn-sm btn-secondary me-2 flex-wrap"
+                                   data-bs-toggle="tooltip"
+                                   data-bs-placement="bottom"
+                                   data-bs-html="true"
+                                   title="套用大小及位置"
+                                   data-scriptBtn="ture"
+                                   data-textStyleIndex="2"
+                                   onclick="applyItemStyle(2,[-1,-1],false)"
+                              >
+                                   大小位置暫存格 - 2
+                              </button>
+
+                              <div class="d-flex flex-wrap">
+                                   <div class="flex-shrink-0 p-0 me-1">
+                                        <div class="p-0 mb-1 flex-fill">
+                                             <button
+                                                  class="btn btn-sm btn-secondary flex-shrink-0"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="對齊左、上"
+                                                  onclick="applyItemStyle(2,[-1,-1],true)"
+                                             >
+                                                  <i class="bi bi-arrow-up-left"></i>
+                                             </button>
+                                             <button
+                                                  class="btn btn-sm btn-secondary flex-shrink-0"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="僅對齊上緣"
+                                                  onclick="applyItemStyle(2,[0,-1],true)"
+                                             >
+                                                  <i class="bi bi-arrow-up"></i>
+                                                  <!-- <i class="bi bi-align-top"></i> -->
+                                             </button>
+                                             <button
+                                                  class="btn btn-sm btn-secondary flex-shrink-0"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="對齊右、上"
+                                                  onclick="applyItemStyle(2,[1,-1],true)"
+                                             >
+                                                  <i class="bi bi-arrow-up-right"></i>
+                                             </button>
+                                        </div>
+                                        <div class="p-0 mb-1 flex-shrink-0">
+                                             <button
+                                                  class="btn btn-sm btn-secondary flex-shrink-0"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="僅對齊左緣"
+                                                  onclick="applyItemStyle(2,[-1,0],true)"
+                                             >
+                                                  <i class="bi bi-arrow-left"></i>
+                                                  <!-- <i class="bi bi-align-start"></i> -->
+                                             </button>
+                                             <button
+                                                  class="btn btn-sm btn-secondary flex-shrink-0"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="不調整位置，僅套用寬高選項"
+                                                  onclick="applyItemStyle(2,[0,0],true)"
+                                                  )
+                                             >
+                                                  <i class="bi bi-crosshair"></i>
+                                             </button>
+                                             <button
+                                                  class="btn btn-sm btn-secondary flex-shrink-0"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="僅對齊右緣"
+                                                  onclick="applyItemStyle(2,[1,0],true)"
+                                                  )
+                                             >
+                                                  <i class="bi bi-arrow-right"></i>
+                                                  <!-- <i class="bi bi-align-end"></i> -->
+                                             </button>
+                                        </div>
+                                        <div class="p-0 mb-1 flex-shrink-0">
+                                             <button
+                                                  class="btn btn-sm btn-secondary flex-shrink-0"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="對齊左、下"
+                                                  onclick="applyItemStyle(2,[-1,1],true)"
+                                             >
+                                                  <i class="bi bi-arrow-down-left"></i>
+                                             </button>
+                                             <button
+                                                  class="btn btn-sm btn-secondary flex-shrink-0"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="僅對齊下緣"
+                                                  onclick="applyItemStyle(2,[0,1],true)"
+                                                  )
+                                             >
+                                                  <i class="bi bi-arrow-down"></i>
+                                                  <!-- <i class="bi bi-align-bottom"></i> -->
+                                             </button>
+                                             <button
+                                                  class="btn btn-sm btn-secondary flex-shrink-0"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="對齊右、下"
+                                                  onclick="applyItemStyle(2,[1,1],true)"
+                                                  )
+                                             >
+                                                  <i class="bi bi-arrow-down-right"></i>
+                                             </button>
+                                        </div>
+                                        <div class="p-0 d-flex gap-1 flex-shrink-0">
+                                             <input type="checkbox" class="form-check-input btn-check" name="fontDropper2" id="fontDropper2-width" autocomplete="off" />
+                                             <label
+                                                  class="btn btn-sm btn-outline-dark flex-fill"
+                                                  for="fontDropper2-width"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="調整位置時同步調整寬度"
+                                                  >寬
+                                             </label>
+                                             <input type="checkbox" class="form-check-input btn-check" name="fontDropper2" id="fontDropper2-height" autocomplete="off" />
+                                             <label
+                                                  class="btn btn-sm btn-outline-dark flex-fill"
+                                                  for="fontDropper2-height"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="調整位置時同步調整高度"
+                                                  >高
+                                             </label>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+               <div class="m-1"></div>
+               <div class="d-flex m-0 gap-1">
+                    <button
+                         type="button"
+                         class="btn btn-sm btn-secondary"
+                         data-bs-toggle="tooltip"
+                         data-bs-placement="bottom"
+                         data-bs-html="true"
+                         title="吸取大小及位置"
+                         data-scriptBtn="ture"
+                         onclick="readItemStyle(3)"
+                    >
+                         <i class="bi bi-eyedropper"></i>
+                    </button>
+                    <div class="d-flex flex-fill m-0 gap-1">
+                         <div class="d-flex flex-fill">
+                              <button
+                                   type="button"
+                                   class="flex-fill btn btn-sm btn-secondary me-2 flex-wrap"
+                                   data-bs-toggle="tooltip"
+                                   data-bs-placement="bottom"
+                                   data-bs-html="true"
+                                   title="套用大小及位置"
+                                   data-scriptBtn="ture"
+                                   data-textStyleIndex="3"
+                                   onclick="applyItemStyle(3,[-1,-1],false)"
+                              >
+                                   大小位置暫存格 - 3
+                              </button>
+
+                              <div class="d-flex flex-wrap">
+                                   <div class="flex-shrink-0 p-0 me-1">
+                                        <div class="p-0 mb-1 flex-fill">
+                                             <button
+                                                  class="btn btn-sm btn-secondary flex-shrink-0"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="對齊左、上"
+                                                  onclick="applyItemStyle(3,[-1,-1],true)"
+                                             >
+                                                  <i class="bi bi-arrow-up-left"></i>
+                                             </button>
+                                             <button
+                                                  class="btn btn-sm btn-secondary flex-shrink-0"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="僅對齊上緣"
+                                                  onclick="applyItemStyle(3,[0,-1],true)"
+                                             >
+                                                  <i class="bi bi-arrow-up"></i>
+                                                  <!-- <i class="bi bi-align-top"></i> -->
+                                             </button>
+                                             <button
+                                                  class="btn btn-sm btn-secondary flex-shrink-0"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="對齊右、上"
+                                                  onclick="applyItemStyle(3,[1,-1],true)"
+                                             >
+                                                  <i class="bi bi-arrow-up-right"></i>
+                                             </button>
+                                        </div>
+                                        <div class="p-0 mb-1 flex-shrink-0">
+                                             <button
+                                                  class="btn btn-sm btn-secondary flex-shrink-0"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="僅對齊左緣"
+                                                  onclick="applyItemStyle(3,[-1,0],true)"
+                                             >
+                                                  <i class="bi bi-arrow-left"></i>
+                                                  <!-- <i class="bi bi-align-start"></i> -->
+                                             </button>
+                                             <button
+                                                  class="btn btn-sm btn-secondary flex-shrink-0"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="不調整位置，僅套用寬高選項"
+                                                  onclick="applyItemStyle(3,[0,0],true)"
+                                                  )
+                                             >
+                                                  <i class="bi bi-crosshair"></i>
+                                             </button>
+                                             <button
+                                                  class="btn btn-sm btn-secondary flex-shrink-0"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="僅對齊右緣"
+                                                  onclick="applyItemStyle(3,[1,0],true)"
+                                                  )
+                                             >
+                                                  <i class="bi bi-arrow-right"></i>
+                                                  <!-- <i class="bi bi-align-end"></i> -->
+                                             </button>
+                                        </div>
+                                        <div class="p-0 mb-1 flex-shrink-0">
+                                             <button
+                                                  class="btn btn-sm btn-secondary flex-shrink-0"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="對齊左、下"
+                                                  onclick="applyItemStyle(3,[-1,1],true)"
+                                             >
+                                                  <i class="bi bi-arrow-down-left"></i>
+                                             </button>
+                                             <button
+                                                  class="btn btn-sm btn-secondary flex-shrink-0"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="僅對齊下緣"
+                                                  onclick="applyItemStyle(3,[0,1],true)"
+                                                  )
+                                             >
+                                                  <i class="bi bi-arrow-down"></i>
+                                                  <!-- <i class="bi bi-align-bottom"></i> -->
+                                             </button>
+                                             <button
+                                                  class="btn btn-sm btn-secondary flex-shrink-0"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="對齊右、下"
+                                                  onclick="applyItemStyle(3,[1,1],true)"
+                                                  )
+                                             >
+                                                  <i class="bi bi-arrow-down-right"></i>
+                                             </button>
+                                        </div>
+                                        <div class="p-0 d-flex gap-1 flex-shrink-0">
+                                             <input type="checkbox" class="form-check-input btn-check" name="fontDropper3" id="fontDropper3-width" autocomplete="off" />
+                                             <label
+                                                  class="btn btn-sm btn-outline-dark flex-fill"
+                                                  for="fontDropper3-width"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="調整位置時同步調整寬度"
+                                                  >寬
+                                             </label>
+                                             <input type="checkbox" class="form-check-input btn-check" name="fontDropper3" id="fontDropper3-height" autocomplete="off" />
+                                             <label
+                                                  class="btn btn-sm btn-outline-dark flex-fill"
+                                                  for="fontDropper1-height"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="調整位置時同步調整高度"
+                                                  >高
+                                             </label>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+               <div class="m-1"></div>
+               <div class="d-flex m-0 gap-1">
+                    <button
+                         type="button"
+                         class="btn btn-sm btn-secondary"
+                         data-bs-toggle="tooltip"
+                         data-bs-placement="bottom"
+                         data-bs-html="true"
+                         title="吸取大小及位置"
+                         data-scriptBtn="ture"
+                         onclick="readItemStyle(4)"
+                    >
+                         <i class="bi bi-eyedropper"></i>
+                    </button>
+                    <div class="d-flex flex-fill m-0 gap-1">
+                         <div class="d-flex flex-fill">
+                              <button
+                                   type="button"
+                                   class="flex-fill btn btn-sm btn-secondary me-2 flex-wrap"
+                                   data-bs-toggle="tooltip"
+                                   data-bs-placement="bottom"
+                                   data-bs-html="true"
+                                   title="套用大小及位置"
+                                   data-scriptBtn="ture"
+                                   data-textStyleIndex="4"
+                                   onclick="applyItemStyle(4,[-1,-1],false)"
+                              >
+                                   大小位置暫存格 - 4
+                              </button>
+
+                              <div class="d-flex flex-wrap">
+                                   <div class="flex-shrink-0 p-0 me-1">
+                                        <div class="p-0 mb-1 flex-fill">
+                                             <button
+                                                  class="btn btn-sm btn-secondary flex-shrink-0"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="對齊左、上"
+                                                  onclick="applyItemStyle(4,[-1,-1],true)"
+                                             >
+                                                  <i class="bi bi-arrow-up-left"></i>
+                                             </button>
+                                             <button
+                                                  class="btn btn-sm btn-secondary flex-shrink-0"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="僅對齊上緣"
+                                                  onclick="applyItemStyle(4,[0,-1],true)"
+                                             >
+                                                  <i class="bi bi-arrow-up"></i>
+                                                  <!-- <i class="bi bi-align-top"></i> -->
+                                             </button>
+                                             <button
+                                                  class="btn btn-sm btn-secondary flex-shrink-0"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="對齊右、上"
+                                                  onclick="applyItemStyle(4,[1,-1],true)"
+                                             >
+                                                  <i class="bi bi-arrow-up-right"></i>
+                                             </button>
+                                        </div>
+                                        <div class="p-0 mb-1 flex-shrink-0">
+                                             <button
+                                                  class="btn btn-sm btn-secondary flex-shrink-0"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="僅對齊左緣"
+                                                  onclick="applyItemStyle(4,[-1,0],true)"
+                                             >
+                                                  <i class="bi bi-arrow-left"></i>
+                                                  <!-- <i class="bi bi-align-start"></i> -->
+                                             </button>
+                                             <button
+                                                  class="btn btn-sm btn-secondary flex-shrink-0"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="不調整位置，僅套用寬高選項"
+                                                  onclick="applyItemStyle(4,[0,0],true)"
+                                                  )
+                                             >
+                                                  <i class="bi bi-crosshair"></i>
+                                             </button>
+                                             <button
+                                                  class="btn btn-sm btn-secondary flex-shrink-0"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="僅對齊右緣"
+                                                  onclick="applyItemStyle(4,[1,0],true)"
+                                                  )
+                                             >
+                                                  <i class="bi bi-arrow-right"></i>
+                                                  <!-- <i class="bi bi-align-end"></i> -->
+                                             </button>
+                                        </div>
+                                        <div class="p-0 mb-1 flex-shrink-0">
+                                             <button
+                                                  class="btn btn-sm btn-secondary flex-shrink-0"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="對齊左、下"
+                                                  onclick="applyItemStyle(4,[-1,1],true)"
+                                             >
+                                                  <i class="bi bi-arrow-down-left"></i>
+                                             </button>
+                                             <button
+                                                  class="btn btn-sm btn-secondary flex-shrink-0"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="僅對齊下緣"
+                                                  onclick="applyItemStyle(4,[0,1],true)"
+                                                  )
+                                             >
+                                                  <i class="bi bi-arrow-down"></i>
+                                                  <!-- <i class="bi bi-align-bottom"></i> -->
+                                             </button>
+                                             <button
+                                                  class="btn btn-sm btn-secondary flex-shrink-0"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="對齊右、下"
+                                                  onclick="applyItemStyle(4,[1,1],true)"
+                                                  )
+                                             >
+                                                  <i class="bi bi-arrow-down-right"></i>
+                                             </button>
+                                        </div>
+                                        <div class="p-0 d-flex gap-1 flex-shrink-0">
+                                             <input type="checkbox" class="form-check-input btn-check" name="fontDropper4" id="fontDropper4-width" autocomplete="off" />
+                                             <label
+                                                  class="btn btn-sm btn-outline-dark flex-fill"
+                                                  for="fontDropper4-width"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="調整位置時同步調整寬度"
+                                                  >寬
+                                             </label>
+                                             <input type="checkbox" class="form-check-input btn-check" name="fontDropper4" id="fontDropper4-height" autocomplete="off" />
+                                             <label
+                                                  class="btn btn-sm btn-outline-dark flex-fill"
+                                                  for="fontDropper4-height"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="bottom"
+                                                  data-bs-html="true"
+                                                  title="調整位置時同步調整高度"
+                                                  >高
+                                             </label>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+               <!-- <div class="d-flex m-0 gap-1">
                     <button
                          type="button"
                          class="flex-shrink-0 btn btn-sm btn-secondary"
                          data-bs-toggle="tooltip"
                          data-bs-placement="bottom"
                          data-bs-html="true"
-                         title="吸取字體樣式"
+                         title="吸取大小及位置"
                          data-scriptBtn="ture"
                          onclick="readItemStyle(2)"
                     >
@@ -210,12 +809,12 @@
                          data-bs-toggle="tooltip"
                          data-bs-placement="bottom"
                          data-bs-html="true"
-                         title="套用字體樣式"
+                         title="套用大小及位置"
                          data-scriptBtn="ture"
                          data-textStyleIndex="2"
                          onclick="applyItemStyle(2)"
                     >
-                         字體樣式暫存格 - 2
+                         大小位置暫存格 - 2
                     </button>
                     <div class="flex-shrink-0 p-0 h-100">
                          <div class="input-group m-0 h-100">
@@ -251,7 +850,7 @@
                          data-bs-toggle="tooltip"
                          data-bs-placement="bottom"
                          data-bs-html="true"
-                         title="吸取字體樣式"
+                         title="吸取大小及位置"
                          data-scriptBtn="ture"
                          onclick="readItemStyle(3)"
                     >
@@ -263,12 +862,12 @@
                          data-bs-toggle="tooltip"
                          data-bs-placement="bottom"
                          data-bs-html="true"
-                         title="套用字體樣式"
+                         title="套用大小及位置"
                          data-scriptBtn="ture"
                          data-textStyleIndex="3"
                          onclick="applyItemStyle(3)"
                     >
-                         字體樣式暫存格 - 3
+                         大小位置暫存格 - 3
                     </button>
                     <div class="flex-shrink-0 p-0 h-100">
                          <div class="input-group m-0 h-100">
@@ -304,7 +903,7 @@
                          data-bs-toggle="tooltip"
                          data-bs-placement="bottom"
                          data-bs-html="true"
-                         title="吸取字體樣式"
+                         title="吸取大小及位置"
                          data-scriptBtn="ture"
                          onclick="readItemStyle(4)"
                     >
@@ -316,12 +915,12 @@
                          data-bs-toggle="tooltip"
                          data-bs-placement="bottom"
                          data-bs-html="true"
-                         title="套用字體樣式"
+                         title="套用大小及位置"
                          data-scriptBtn="ture"
                          data-textStyleIndex="4"
                          onclick="applyItemStyle(4)"
                     >
-                         字體樣式暫存格 - 4
+                         大小位置暫存格 - 4
                     </button>
                     <div class="flex-shrink-0 p-0 h-100">
                          <div class="input-group m-0 h-100">
@@ -349,7 +948,7 @@
                               >
                          </div>
                     </div>
-               </div>
+               </div> -->
                <!-- <div class="m-1"></div>
                <button
                     class="btn btn-dark col sectionHolder"

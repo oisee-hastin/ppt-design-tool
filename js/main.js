@@ -283,33 +283,43 @@ async function readItemStyle(presetIndex) {
           selectedShapes.load("items");
           await context.sync();
           textStyles[presetIndex] = {
-               xPos: selectedShapes.items[0].left,
-               yPos: selectedShapes.items[0].top,
+               left: selectedShapes.items[0].left,
+               top: selectedShapes.items[0].top,
                width: selectedShapes.items[0].width,
                height: selectedShapes.items[0].height,
+               right: selectedShapes.items[0].left + selectedShapes.items[0].width,
+               bottom: selectedShapes.items[0].top + selectedShapes.items[0].height,
           };
           console.log(textStyles[presetIndex]);
           // Get the position information
           // Now you can use 'left' and 'top' to determine the position of the shape.
      });
-     $("button[data-textStyleIndex=" + presetIndex + "]").text(
-          "x: " +
-               Math.floor(textStyles[presetIndex].xPos) +
-               "; y: " +
-               Math.floor(textStyles[presetIndex].yPos) +
-               "; 寬: " +
-               Math.floor(textStyles[presetIndex].width) +
-               "; 高: " +
-               Math.floor(textStyles[presetIndex].height)
+     $("button[data-textStyleIndex=" + presetIndex + "]").html(
+          "←: " +
+               ("___" + Math.floor(textStyles[presetIndex].left)).slice(-3) +
+               "<br>  ↑: " +
+               ("___" + Math.floor(textStyles[presetIndex].top)).slice(-3) +
+               // "→: " +
+               // Math.floor(textStyles[presetIndex].right) +
+               // "; ↓: " +
+               // Math.floor(textStyles[presetIndex].bottom) +
+               "<br> 寬: " +
+               ("___" + Math.floor(textStyles[presetIndex].width)).slice(-3) +
+               "<br>  高: " +
+               ("___" + Math.floor(textStyles[presetIndex].height)).slice(-3)
      );
 }
 
-async function applyItemStyle(presetIndex) {
+async function applyItemStyle(presetIndex, posOpt, bySizeOpt) {
      let selectorEle = document.querySelectorAll('input[name="fontDropper' + presetIndex + '"]');
-     let selectorCondition = [];
-     selectorEle.forEach((e) => {
-          selectorCondition.push(e.checked);
-     });
+     let applyWidtHeight = [];
+     if (bySizeOpt) {
+          selectorEle.forEach((e) => {
+               applyWidtHeight.push(e.checked);
+          });
+     } else {
+          applyWidtHeight = [true, true];
+     }
 
      await PowerPoint.run(async (context) => {
           let selectedShapes = context.presentation.getSelectedShapes();
@@ -321,20 +331,29 @@ async function applyItemStyle(presetIndex) {
           });
           await context.sync();
           selectedShapes.items.map((shape) => {
-               if (selectorCondition[0]) {
-                    shape.left = textStyles[presetIndex].xPos;
-               }
-               if (selectorCondition[1]) {
-                    shape.top = textStyles[presetIndex].yPos;
-               }
-               if (selectorCondition[2]) {
+               if (applyWidtHeight[0]) {
                     shape.width = textStyles[presetIndex].width;
                }
-               if (selectorCondition[3]) {
+               if (applyWidtHeight[1]) {
                     shape.height = textStyles[presetIndex].height;
+               }
+               shape.load("width,height");
+               if (posOpt[0] == -1) {
+                    shape.left = textStyles[presetIndex].left;
+               } else if (posOpt[0] == 1) {
+                    shape.left = textStyles[presetIndex].right - shape.width;
+               }
+               if (posOpt[1] == -1) {
+                    shape.top = textStyles[presetIndex].top;
+               } else if (posOpt[1] == 1) {
+                    shape.top = textStyles[presetIndex].bottom - shape.height;
                }
           });
           // Get the position information
           // Now you can use 'left' and 'top' to determine the position of the shape.
      });
 }
+
+$(function () {
+     $('[data-bs-toggle="tooltip"]').tooltip();
+});
