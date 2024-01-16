@@ -283,17 +283,18 @@ async function readItemStyle(presetIndex) {
           selectedShapes.load("items");
           await context.sync();
           textStyles[presetIndex] = {
-               left: selectedShapes.items[0].left,
-               top: selectedShapes.items[0].top,
-               width: selectedShapes.items[0].width,
-               height: selectedShapes.items[0].height,
-               right: selectedShapes.items[0].left + selectedShapes.items[0].width,
-               bottom: selectedShapes.items[0].top + selectedShapes.items[0].height,
+               left: Math.round(selectedShapes.items[0].left),
+               top: Math.round(selectedShapes.items[0].top),
+               width: Math.round(selectedShapes.items[0].width),
+               height: Math.round(selectedShapes.items[0].height),
+               right: Math.round(selectedShapes.items[0].left + selectedShapes.items[0].width),
+               bottom: Math.round(selectedShapes.items[0].top + selectedShapes.items[0].height),
           };
           console.log(textStyles[presetIndex]);
           // Get the position information
           // Now you can use 'left' and 'top' to determine the position of the shape.
      });
+     applyItemStyle(presetIndex, [-1, -1], false);
      $("button[data-textStyleIndex=" + presetIndex + "]").html(
           "←: " +
                ("___" + Math.floor(textStyles[presetIndex].left)).slice(-3) +
@@ -313,6 +314,7 @@ async function readItemStyle(presetIndex) {
 async function applyItemStyle(presetIndex, posOpt, bySizeOpt) {
      let selectorEle = document.querySelectorAll('input[name="fontDropper' + presetIndex + '"]');
      let applyWidtHeight = [];
+     console.log(bySizeOpt);
      if (bySizeOpt) {
           selectorEle.forEach((e) => {
                applyWidtHeight.push(e.checked);
@@ -320,6 +322,7 @@ async function applyItemStyle(presetIndex, posOpt, bySizeOpt) {
      } else {
           applyWidtHeight = [true, true];
      }
+     console.log(applyWidtHeight);
 
      await PowerPoint.run(async (context) => {
           let selectedShapes = context.presentation.getSelectedShapes();
