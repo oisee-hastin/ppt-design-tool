@@ -146,6 +146,270 @@
                          data-bs-toggle="tooltip"
                          data-bs-placement="bottom"
                          data-bs-html="true"
+                         title="吸取標題大小及位置"
+                         data-scriptBtn="ture"
+                         onclick="readTitleStyle()"
+                    >
+                         <i class="bi bi-eyedropper"></i>
+                    </button>
+                    <div class="d-flex flex-fill m-0 gap-1">
+                         <div class="d-flex flex-fill">
+                              <button
+                                   type="button"
+                                   class="flex-fill btn btn-secondary me-2 px-3"
+                                   data-bs-toggle="tooltip"
+                                   data-bs-placement="bottom"
+                                   data-bs-html="true"
+                                   title="套用大小及位置"
+                                   data-scriptBtn="ture"
+                                   onclick="applyTitleStyle()"
+                              >
+                                   標題
+                              </button>
+                              <div class="d-flex flex-wrap">
+                                   <div class="p-0 d-flex gap-1 flex-shrink-0">
+                                        <div class="flex-shrink-0 p-0 h-100">
+                                             <div class="input-group m-0 h-100">
+                                                  <input type="checkbox" class="form-check-input btn-check mb-0" name="fontDropperTitle" id="fontDropperTitle-font" autocomplete="off" checked="true" />
+                                                  <label
+                                                       class="btn btn-sm btn-outline-secondary col mb-0 rounded-start"
+                                                       for="fontDropperTitle-font"
+                                                       data-bs-toggle="tooltip"
+                                                       data-bs-placement="bottom"
+                                                       data-bs-html="true"
+                                                       title="字體"
+                                                       ><i class="bi bi-fonts"></i
+                                                  ></label>
+                                                  <input
+                                                       type="checkbox"
+                                                       class="form-check-input btn-check mb-0"
+                                                       name="fontDropperTitle"
+                                                       id="fontDropperTitle-fillColor"
+                                                       autocomplete="off"
+                                                       checked="true"
+                                                  />
+                                                  <label
+                                                       class="btn btn-sm btn-outline-secondary col mb-0"
+                                                       for="fontDropperTitle-fillColor"
+                                                       data-bs-toggle="tooltip"
+                                                       data-bs-placement="bottom"
+                                                       data-bs-html="true"
+                                                       title="填色"
+                                                       ><i class="bi bi-paint-bucket"></i
+                                                  ></label>
+                                                  <input type="checkbox" class="form-check-input btn-check mb-0" name="fontDropperTitle" id="fontDropperTitle-size" autocomplete="off" checked="true" />
+                                                  <label
+                                                       class="btn btn-sm btn-outline-secondary col mb-0"
+                                                       for="fontDropperTitle-size"
+                                                       data-bs-toggle="tooltip"
+                                                       data-bs-placement="bottom"
+                                                       data-bs-html="true"
+                                                       title="字級"
+                                                       ><i class="bi bi-plus-slash-minus"></i
+                                                  ></label>
+                                                  <input type="checkbox" class="form-check-input btn-check mb-0" name="fontDropperTitle" id="fontDropperTitle-bold" autocomplete="off" />
+                                                  <label
+                                                       class="btn btn-sm btn-outline-secondary col mb-0"
+                                                       for="fontDropperTitle-bold"
+                                                       data-bs-toggle="tooltip"
+                                                       data-bs-placement="bottom"
+                                                       data-bs-html="true"
+                                                       title="粗體"
+                                                       ><i class="bi bi-type-bold"></i
+                                                  ></label>
+                                                  <input type="checkbox" class="form-check-input btn-check mb-0" name="fontDropperTitle" id="fontDropperTitle-italic" autocomplete="off" />
+                                                  <label
+                                                       class="btn btn-sm btn-outline-secondary col mb-0"
+                                                       for="fontDropperTitle-italic"
+                                                       data-bs-toggle="tooltip"
+                                                       data-bs-placement="bottom"
+                                                       data-bs-html="false"
+                                                       title=""
+                                                       ><i class="bi bi-type-italic"></i
+                                                  ></label>
+                                                  <input type="checkbox" class="form-check-input btn-check mb-0" name="fontDropperTitle" id="fontDropperTitle-vAlign" autocomplete="off" />
+                                                  <label
+                                                       class="btn btn-sm btn-outline-secondary col mb-0"
+                                                       for="fontDropperTitle-vAlign"
+                                                       data-bs-toggle="tooltip"
+                                                       data-bs-placement="bottom"
+                                                       data-bs-html="false"
+                                                       title="垂直對齊"
+                                                       ><i class="bi bi-distribute-vertical"></i
+                                                  ></label>
+                                             </div>
+                                        </div>
+                                   </div>
+                                   <div class="p-0 d-flex gap-1 flex-shrink-1">
+                                        <div class="flex-shrink-1 p-0 h-100">
+                                             <div class="input-group input-group-sm flex-nowrap">
+                                                  <span class="input-group-text">上緣範圍</span>
+                                                  <input type="text" class="form-control" placeholder="10" id="titleJudge_Top" value="10" />
+                                                  <span class="input-group-text">%</span>
+                                             </div>
+                                        </div>
+                                   </div>
+                                   <div class="p-0 d-flex gap-1 flex-shrink-1">
+                                        <div class="flex-shrink-1 p-0 h-100">
+                                             <div class="input-group input-group-sm flex-nowrap">
+                                                  <span class="input-group-text">左緣範圍</span>
+                                                  <input type="text" class="form-control" placeholder="10" id="titleJudge_Left" value="20" />
+                                                  <span class="input-group-text">%</span>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+               <div class="m-1"></div>
+               <div class="d-flex m-0 gap-1">
+                    <button
+                         type="button"
+                         class="btn btn-sm btn-secondary"
+                         data-bs-toggle="tooltip"
+                         data-bs-placement="bottom"
+                         data-bs-html="true"
+                         title="吸取標題大小及位置"
+                         data-scriptBtn="ture"
+                         onclick="readRefStyle()"
+                    >
+                         <i class="bi bi-eyedropper"></i>
+                    </button>
+                    <div class="d-flex m-0 gap-1">
+                         <div class="d-flex flex-fill m-0 gap-1">
+                              <div class="d-flex flex-fill">
+                                   <button
+                                        type="button"
+                                        class="flex-fill btn btn-secondary me-2 px-3"
+                                        data-bs-toggle="tooltip"
+                                        data-bs-placement="bottom"
+                                        data-bs-html="true"
+                                        title="套用大小及位置"
+                                        data-scriptBtn="ture"
+                                        onclick="applyRefStyle()"
+                                   >
+                                        附註
+                                   </button>
+                                   <div class="d-flex flex-wrap">
+                                        <div class="p-0 d-flex gap-1 flex-shrink-0">
+                                             <div class="flex-shrink-0 p-0 h-100">
+                                                  <div class="input-group m-0 h-100">
+                                                       <input
+                                                            type="checkbox"
+                                                            class="form-check-input btn-check mb-0"
+                                                            name="fontDropperRef"
+                                                            id="fontDropperRef-font"
+                                                            autocomplete="off"
+                                                            checked="true"
+                                                       />
+                                                       <label
+                                                            class="btn btn-sm btn-outline-secondary col mb-0 rounded-start"
+                                                            for="fontDropperRef-font"
+                                                            data-bs-toggle="tooltip"
+                                                            data-bs-placement="bottom"
+                                                            data-bs-html="true"
+                                                            title="字體"
+                                                            ><i class="bi bi-fonts"></i
+                                                       ></label>
+                                                       <input
+                                                            type="checkbox"
+                                                            class="form-check-input btn-check mb-0"
+                                                            name="fontDropperRef"
+                                                            id="fontDropperRef-fillColor"
+                                                            autocomplete="off"
+                                                            checked="true"
+                                                       />
+                                                       <label
+                                                            class="btn btn-sm btn-outline-secondary col mb-0"
+                                                            for="fontDropperRef-fillColor"
+                                                            data-bs-toggle="tooltip"
+                                                            data-bs-placement="bottom"
+                                                            data-bs-html="true"
+                                                            title="填色"
+                                                            ><i class="bi bi-paint-bucket"></i
+                                                       ></label>
+                                                       <input
+                                                            type="checkbox"
+                                                            class="form-check-input btn-check mb-0"
+                                                            name="fontDropperRef"
+                                                            id="fontDropperRef-size"
+                                                            autocomplete="off"
+                                                            checked="true"
+                                                       />
+                                                       <label
+                                                            class="btn btn-sm btn-outline-secondary col mb-0"
+                                                            for="fontDropperRef-size"
+                                                            data-bs-toggle="tooltip"
+                                                            data-bs-placement="bottom"
+                                                            data-bs-html="true"
+                                                            title="字級"
+                                                            ><i class="bi bi-plus-slash-minus"></i
+                                                       ></label>
+                                                       <input type="checkbox" class="form-check-input btn-check mb-0" name="fontDropperRef" id="fontDropperRef-bold" autocomplete="off" />
+                                                       <label
+                                                            class="btn btn-sm btn-outline-secondary col mb-0"
+                                                            for="fontDropperRef-bold"
+                                                            data-bs-toggle="tooltip"
+                                                            data-bs-placement="bottom"
+                                                            data-bs-html="true"
+                                                            title="粗體"
+                                                            ><i class="bi bi-type-bold"></i
+                                                       ></label>
+                                                       <input type="checkbox" class="form-check-input btn-check mb-0" name="fontDropperRef" id="fontDropperRef-italic" autocomplete="off" />
+                                                       <label
+                                                            class="btn btn-sm btn-outline-secondary col mb-0"
+                                                            for="fontDropperRef-italic"
+                                                            data-bs-toggle="tooltip"
+                                                            data-bs-placement="bottom"
+                                                            data-bs-html="false"
+                                                            title="斜體"
+                                                            ><i class="bi bi-type-italic"></i
+                                                       ></label>
+                                                       <input type="checkbox" class="form-check-input btn-check mb-0" name="fontDropperRef" id="fontDropperRef-vAlign" autocomplete="off" />
+                                                       <label
+                                                            class="btn btn-sm btn-outline-secondary col mb-0"
+                                                            for="fontDropperRef-vAlign"
+                                                            data-bs-toggle="tooltip"
+                                                            data-bs-placement="bottom"
+                                                            data-bs-html="false"
+                                                            title="垂直對齊"
+                                                            ><i class="bi bi-distribute-vertical"></i
+                                                       ></label>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                        <div class="p-0 d-flex gap-1 flex-shrink-1">
+                                             <div class="flex-shrink-1 p-0 h-100">
+                                                  <div class="input-group input-group-sm flex-nowrap">
+                                                       <span class="input-group-text">下緣範圍</span>
+                                                       <input type="text" class="form-control" placeholder="10" id="refJudge_Top" value="5" />
+                                                       <span class="input-group-text">%</span>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                        <div class="p-0 d-flex gap-1 flex-shrink-1">
+                                             <div class="flex-shrink-1 p-0 h-100">
+                                                  <div class="input-group input-group-sm flex-nowrap">
+                                                       <span class="input-group-text">左緣範圍</span>
+                                                       <input type="text" class="form-control" placeholder="10" id="refJudge_Left" value="20" />
+                                                       <span class="input-group-text">%</span>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+               <div class="m-2"></div>
+               <div class="d-flex m-0 gap-1">
+                    <button
+                         type="button"
+                         class="btn btn-sm btn-secondary"
+                         data-bs-toggle="tooltip"
+                         data-bs-placement="bottom"
+                         data-bs-html="true"
                          title="吸取大小及位置"
                          data-scriptBtn="ture"
                          onclick="readItemStyle(1)"
@@ -790,6 +1054,7 @@
                          </div>
                     </div>
                </div>
+
                <!-- <div class="d-flex m-0 gap-1">
                     <button
                          type="button"
