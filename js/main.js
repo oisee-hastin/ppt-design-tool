@@ -482,10 +482,18 @@ async function applyTitleStyle() {
                     if (applyFormat[5]) {
                          shape.textFrame.verticalAlignment = titelStyle.vAlign;
                     }
-                    shape.textFrame.leftMargin = titelStyle.ml;
-                    shape.textFrame.rightMargin = titelStyle.mr;
-                    shape.textFrame.topMargin = titelStyle.mt;
-                    shape.textFrame.bottomMargin = titelStyle.mb;
+                    try {
+                         shape.textFrame.leftMargin = titelStyle.ml;
+                    } catch (err) {}
+                    try {
+                         shape.textFrame.rightMargin = titelStyle.mr;
+                    } catch (err) {}
+                    try {
+                         shape.textFrame.topMargin = titelStyle.mt;
+                    } catch (err) {}
+                    try {
+                         shape.textFrame.bottomMargin = titelStyle.mb;
+                    } catch (err) {}
                     console.log("End");
                }
           }
