@@ -429,6 +429,7 @@ async function applyTitleStyle() {
                await context.sync();
                for (let k = 0; k < slideShapes.items.length; k++) {
                     let shape = slideShapes.items[k];
+                    console.log(shape.type);
                     if (shape.type != "GeometricShape") {
                          console.log("not geoShape");
                          continue;
