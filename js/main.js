@@ -18,8 +18,9 @@ async function addSpace() {
                let tmpObj = new Object();
                tmpObj.slideID = curSlideID;
                console.log("start");
-               if (shapes.items[i].type != "GeometricShape") {
-                    console.log("not geoShape");
+               // if (shapes.items[i].type != "GeometricShape") {
+               if (shape.type == "Image" || shape.type == "Table") {
+                    // console.log("not geoShape");
                     continue;
                }
                shapes.items[i].textFrame.load("hasText");
@@ -430,8 +431,8 @@ async function applyTitleStyle() {
                for (let k = 0; k < slideShapes.items.length; k++) {
                     let shape = slideShapes.items[k];
                     console.log(shape.type);
-                    if (shape.type != "GeometricShape") {
-                         console.log("not geoShape");
+                    if (shape.type == "Image" || shape.type == "Table") {
+                         // console.log("not geoShape");
                          continue;
                     }
                     if (shape.top > ($("#titleJudge_Top").val() * 540) / 100) {
@@ -452,28 +453,28 @@ async function applyTitleStyle() {
 
                     shape.load("width,height");
                     shape.name = "Title textbox";
-                    console.log("A");
+                    // console.log("A");
                     shape.width = titelStyle.width;
                     shape.height = titelStyle.height;
                     shape.left = titelStyle.left;
                     shape.top = titelStyle.top;
-                    console.log("B");
+                    // console.log("B");
 
                     shape.textFrame.textRange.paragraphFormat.horizontalAlignment = titelStyle.xAlign;
                     // shape.textFrame.verticalAlignment = PowerPoint.TextVerticalAlignment.top;
-                    console.log("H");
+                    // console.log("H");
                     if (applyFormat[0]) {
                          shape.textFrame.textRange.font.name = titelStyle.fontFamily;
                     }
-                    console.log("K");
+                    // console.log("K");
                     if (applyFormat[1]) {
                          shape.textFrame.textRange.font.color = titelStyle.fontColor;
                     }
-                    console.log("R");
+                    // console.log("R");
                     if (applyFormat[2]) {
                          shape.textFrame.textRange.font.size = titelStyle.fontSize;
                     }
-                    console.log("Z");
+                    // console.log("Z");
                     if (applyFormat[3]) {
                          shape.textFrame.textRange.font.bold = titelStyle.bold;
                     }
@@ -495,7 +496,7 @@ async function applyTitleStyle() {
                     try {
                          shape.textFrame.bottomMargin = titelStyle.mb;
                     } catch (err) {}
-                    console.log("End");
+                    console.log("Apply End");
                }
           }
      });
@@ -571,8 +572,8 @@ async function applyRefStyle() {
                     let shape = slideShapes.items[k];
                     try {
                          console.log("start");
-                         if (shape.type != "GeometricShape") {
-                              console.log("not geoShape");
+                         if (shape.type == "Image" || shape.type == "Table") {
+                              // console.log("not geoShape");
                               continue;
                          }
                          shape.textFrame.load("hasText");
